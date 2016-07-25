@@ -1,4 +1,5 @@
 const Items = require('../src/models/items');
+const Promotinons = require('../src/models/promotions');
 
 function loadAllItems() {
   return [
@@ -13,14 +14,7 @@ function loadAllItems() {
 
 function loadPromotions() {
   return [
-    {
-      type: 'BUY_TWO_GET_ONE_FREE',
-      barcodes: [
-        'ITEM000000',
-        'ITEM000001',
-        'ITEM000005'
-      ]
-    }
+    new Promotinons('BUY_TWO_GET_ONE_FREE', ['ITEM000000', 'ITEM000001', 'ITEM000005'])
   ];
 }
 
