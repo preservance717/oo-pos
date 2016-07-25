@@ -17,7 +17,7 @@ class Receipt {
     const formatMoney = (money) => {
       return money.toFixed(2);
     };
-     
+
     let receiptItemsText = receipt.receiptItems
       .map(receiptItem => {
         const cartItem = receiptItem.cartItem;
