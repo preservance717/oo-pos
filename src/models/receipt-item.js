@@ -5,34 +5,34 @@ class ReceiptItem {
     this.subtotal = subtotal;
   }
 
-  getBarcode(){
+  getBarcode() {
     return this.cartItem.getBarcode();
   }
 
-  getName(){
+  getName() {
     return this.cartItem.getName();
   }
 
-  getPrice(){
+  getPrice() {
     return this.cartItem.getPrice();
   }
 
-  getUnit(){
+  getUnit() {
     return this.cartItem.getUnit();
   }
 
-  getCount(){
+  getCount() {
     return this.cartItem.count;
   }
 
   static buildReceiptItems(cartItems, allPromotions) {
-    const discount = (count, price, promotionType) => {
+    const discount = (cartItem, promotionType) => {
 
-      let subtotal = count * price;
+      let subtotal = cartItem.getSubtotal();
       let saved = 0;
 
       if (promotionType === 'BUY_TWO_GET_ONE_FREE') {
-        saved = parseInt(count / 3) * price;
+        saved = parseInt(cartItem.count / 3) * cartItem.getPrice();
       }
 
       subtotal -= saved;
@@ -50,7 +50,7 @@ class ReceiptItem {
 
       const promotionType = findPromotionType(cartItem.getBarcode(), allPromotions);
 
-      const {saved, subtotal} = discount(cartItem.count, cartItem.getPrice(), promotionType);
+      const {saved, subtotal} = discount(cartItem, promotionType);
 
       return new ReceiptItem(cartItem, saved, subtotal);
     });
