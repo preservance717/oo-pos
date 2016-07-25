@@ -1,3 +1,8 @@
-/**
- * Created by gaole on 7/25/16.
- */
+class Promotions {
+  constructor(type, barcodes = []){
+    this.type = type;
+    this.barcodes = barcodes;
+  }
+}
+
+module.exports = Promotions;
