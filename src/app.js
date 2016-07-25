@@ -4,16 +4,13 @@ const CartItems = require('../src/models/cart-item');
 const ReceiptItems = require('../src/models/receipt-item');
 const Receipt = require('./models/receipt');
 const Items = require('./models/items');
+const Promotions = require('./models/promotions');
 
 function printReceipt(tags) {
 
   const cartItems = buildCartItems(tags, Items.all());
-
-  const allPromotions = loadPromotions();
-  const receiptItems = buildReceiptItems(cartItems, allPromotions);
-
+  const receiptItems = buildReceiptItems(cartItems, Promotions.all());
   const receipt = buildReceipt(receiptItems);
-
   const receiptText = buildReceiptText(receipt);
 
   console.log(receiptText);
