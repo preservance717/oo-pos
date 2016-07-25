@@ -3,6 +3,7 @@ const loadAllItems = fixture.loadAllItems;
 const loadPromotions = fixture.loadPromotions;
 const CartItems = require('../src/models/cart-item');
 const ReceiptItems = require('../src/models/receipt-item');
+const Receipt = require('./models/receipt');
 
 function printReceipt(tags) {
 
@@ -75,7 +76,6 @@ function findPromotionType(barcode, promotions) {
 }
 
 function buildReceipt(receiptItems) {
-
   let total = 0;
   let savedTotal = 0;
 
@@ -84,7 +84,7 @@ function buildReceipt(receiptItems) {
     savedTotal += receiptItem.saved;
   }
 
-  return {receiptItems, total, savedTotal}
+  return new Receipt(receiptItems, total, savedTotal);
 }
 
 function buildReceiptText(receipt) {
